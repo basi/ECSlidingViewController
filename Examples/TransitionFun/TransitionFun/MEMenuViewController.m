@@ -33,7 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self enableScrollToTopOnStatusBar];
+
     // topViewController is the transitions navigation controller at this point.
     // It is initially set as a User Defined Runtime Attributes in storyboards.
     // We keep a reference to this instance so that we can go back to it without losing its state.
@@ -91,6 +92,14 @@
     
         
     [self.slidingViewController resetTopViewAnimated:YES];
+}
+
+- (void)enableScrollToTopOnStatusBar {
+  for (UIView *view in self.view.subviews) {
+    if ([view isKindOfClass:[UIScrollView class]]) {
+      [(UIScrollView *)view setScrollsToTop:NO];
+    }
+  }
 }
 
 @end
